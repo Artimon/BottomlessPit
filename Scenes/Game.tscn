@@ -1,0 +1,267 @@
+[gd_scene load_steps=30 format=3 uid="uid://8i70pjg8b42a"]
+
+[ext_resource type="Texture2D" uid="uid://begrfk2k5l4lj" path="res://Images/PitWall2.png" id="1_3pg4d"]
+[ext_resource type="Texture2D" uid="uid://d4f88nbdcab22" path="res://Images/PitWall1.png" id="1_t2rl7"]
+[ext_resource type="Texture2D" uid="uid://bltii1d1u33m5" path="res://Images/PitBackground.png" id="1_vu72q"]
+[ext_resource type="Texture2D" uid="uid://bejojfrhu4s5" path="res://Images/CharacterFalling.png" id="2_806m0"]
+[ext_resource type="Texture2D" uid="uid://chw00166e2gkm" path="res://Images/PitWall3.png" id="2_uqr4j"]
+[ext_resource type="Script" path="res://Scripts/TestCharacter.cs" id="5_0bpk5"]
+[ext_resource type="Texture2D" uid="uid://cr6p5tmhqxiad" path="res://Images/CharacterStand.png" id="7_nup2r"]
+[ext_resource type="PackedScene" uid="uid://bo6yh6fbvpkgb" path="res://Prefabs/PlatformWood.tscn" id="7_upr3p"]
+[ext_resource type="Texture2D" uid="uid://k66p5a8qfeyb" path="res://Images/CharacterJump.png" id="7_wh483"]
+[ext_resource type="Texture2D" uid="uid://bn2c3wq4wq3ga" path="res://Images/CharacterWalk.png" id="8_1trfb"]
+[ext_resource type="Script" path="res://Scripts/PixelPerfectCamera2D.cs" id="10_c2w4i"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntlii"]
+normal = Vector2(0, 1)
+distance = -200.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4gink"]
+normal = Vector2(-1, 0)
+distance = -240.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mfn5x"]
+distance = -200.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v0s8l"]
+normal = Vector2(1, 0)
+distance = -240.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wf7ut"]
+frequency = 0.1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hrawj"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_afxwu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 12, 1)
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, -500, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcqe4"]
+atlas = ExtResource("2_806m0")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0bfd"]
+atlas = ExtResource("2_806m0")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4jdh"]
+atlas = ExtResource("2_806m0")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtyvb"]
+atlas = ExtResource("2_806m0")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cqmy"]
+atlas = ExtResource("8_1trfb")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm0b5"]
+atlas = ExtResource("8_1trfb")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvh1g"]
+atlas = ExtResource("8_1trfb")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmdac"]
+atlas = ExtResource("8_1trfb")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4jqm"]
+atlas = ExtResource("8_1trfb")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nujgg"]
+atlas = ExtResource("8_1trfb")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x6jr0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcqe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0bfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4jdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtyvb")
+}],
+"loop": true,
+"name": &"Falling",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wh483")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_nup2r")
+}],
+"loop": true,
+"name": &"Stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cqmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm0b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvh1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmdac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4jqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nujgg")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 6.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PitBackground Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0.5)
+repeat_size = Vector2(64, 64)
+autoscroll = Vector2(0, -90)
+repeat_times = 10
+
+[node name="Background Sprite2D" type="Sprite2D" parent="PitBackground Parallax2D2"]
+position = Vector2(288, 162)
+texture = ExtResource("1_vu72q")
+centered = false
+
+[node name="PitWall3 Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0.5)
+repeat_size = Vector2(0, 48)
+autoscroll = Vector2(0, -100)
+repeat_times = 8
+
+[node name="LeftWall Sprite2D" type="Sprite2D" parent="PitWall3 Parallax2D"]
+position = Vector2(-280, 162)
+texture = ExtResource("2_uqr4j")
+centered = false
+
+[node name="RightWall Sprite2D" type="Sprite2D" parent="PitWall3 Parallax2D"]
+position = Vector2(280, 162)
+texture = ExtResource("2_uqr4j")
+centered = false
+offset = Vector2(-112, 0)
+flip_h = true
+
+[node name="PitWall2 Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0.75)
+repeat_size = Vector2(0, 48)
+autoscroll = Vector2(0, -150)
+repeat_times = 8
+
+[node name="LeftWall Sprite2D" type="Sprite2D" parent="PitWall2 Parallax2D"]
+position = Vector2(-280, 162)
+texture = ExtResource("1_3pg4d")
+centered = false
+
+[node name="RightWall Sprite2D" type="Sprite2D" parent="PitWall2 Parallax2D"]
+position = Vector2(280, 162)
+texture = ExtResource("1_3pg4d")
+centered = false
+offset = Vector2(-80, 0)
+flip_h = true
+
+[node name="PitWall1 Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 48)
+autoscroll = Vector2(0, -200)
+repeat_times = 8
+
+[node name="LeftWall Sprite2D" type="Sprite2D" parent="PitWall1 Parallax2D"]
+position = Vector2(-330, 162)
+texture = ExtResource("1_t2rl7")
+centered = false
+
+[node name="RightWall Sprite2D" type="Sprite2D" parent="PitWall1 Parallax2D"]
+position = Vector2(330, 162)
+texture = ExtResource("1_t2rl7")
+centered = false
+offset = Vector2(-96, 0)
+flip_h = true
+
+[node name="Level Border" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level Border"]
+
+[node name="Top CollisionShape2D" type="CollisionShape2D" parent="Level Border/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_ntlii")
+
+[node name="Right CollisionShape2D" type="CollisionShape2D" parent="Level Border/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_4gink")
+
+[node name="Bottom CollisionShape2D" type="CollisionShape2D" parent="Level Border/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_mfn5x")
+
+[node name="Left CollisionShape2D2" type="CollisionShape2D" parent="Level Border/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_v0s8l")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_animatedSprite")]
+script = ExtResource("5_0bpk5")
+_noise = SubResource("FastNoiseLite_wf7ut")
+_animatedSprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 89)
+shape = SubResource("CapsuleShape2D_hrawj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CharacterBody2D"]
+position = Vector2(0, 94)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_afxwu")
+lifetime = 0.25
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, 89)
+sprite_frames = SubResource("SpriteFrames_x6jr0")
+animation = &"Falling"
+autoplay = "Falling"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, 89)
+limit_left = -320
+limit_top = -230
+limit_right = 320
+limit_bottom = 230
+position_smoothing_enabled = true
+script = ExtResource("10_c2w4i")
+
+[node name="PlatformWood" parent="." instance=ExtResource("7_upr3p")]
+
+[node name="PlatformWood2" parent="." instance=ExtResource("7_upr3p")]
+position = Vector2(104, 113)
+
+[node name="PlatformWood3" parent="." instance=ExtResource("7_upr3p")]
+position = Vector2(-53, 65)
+
+[node name="PlatformWood4" parent="." instance=ExtResource("7_upr3p")]
+position = Vector2(-101, 65)
+
+[node name="PlatformWood5" parent="." instance=ExtResource("7_upr3p")]
+position = Vector2(-149, 65)
